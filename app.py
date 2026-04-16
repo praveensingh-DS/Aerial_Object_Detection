@@ -263,7 +263,6 @@ def load_yolo():
 clf_model,  clf_err  = load_clf()
 yolo_model, yolo_err = load_yolo()
 
-# ── Helpers ───────────────────────────────────────────────────────────────────
 def preprocess(image: Image.Image):
     """Resize to 224×224 and normalise to [0,1] — matches notebook training."""
     img224 = image.resize((224, 224))
@@ -316,11 +315,11 @@ def make_gradcam(model, arr, img224):
 
 def risk_level(label, conf):
     if label == "Drone":
-        if conf > 0.90: return "alert-red",    "🔴 HIGH RISK — Drone detected with very high confidence. Recommend immediate alert."
-        if conf > 0.70: return "alert-yellow",  "🟡 MEDIUM RISK — Probable drone. Manual verification recommended."
-        return "alert-yellow", "🟡 LOW CONFIDENCE — Uncertain drone prediction. Review manually."
+        if conf > 0.90: return "alert-red",    "🔴 HIGH RISK Drone detected with very high confidence. Recommend immediate alert."
+        if conf > 0.70: return "alert-yellow",  "🟡 MEDIUM RISK Probable drone. Manual verification recommended."
+        return "alert-yellow", "🟡 LOW CONFIDENCE  Uncertain drone prediction. Review manually."
     else:
-        if conf > 0.85: return "alert-green",  "🟢 SAFE — Bird confirmed with high confidence."
+        if conf > 0.85: return "alert-green",  "🟢 SAFE Bird confirmed with high confidence."
         return "alert-green", "🟢 LIKELY BIRD — Low-confidence bird prediction. Consider re-checking."
 
 def pil_to_b64(img: Image.Image) -> str:
